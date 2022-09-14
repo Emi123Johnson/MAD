@@ -1,68 +1,47 @@
-package com.example.simplecalculator;
+package com.example.myapplication2;
+
+
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-public class MainActivity extends AppCompatActivity {
-    EditText number1;
-    EditText number2;
-    Button b1;
-    Button b2;
-    Button b3;
-    Button b4;
-    float sol = 0;
 
+public class MainActivity extends AppCompatActivity {
+    Button b1,b2;
+    EditText username,password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        number1 = findViewById(R.id.n1);
-        number2 = findViewById(R.id.n2);
-        b1 = findViewById(R.id.add);
-        b2 = findViewById(R.id.sub);
-        b3 = findViewById(R.id.mul);
-        b4 = findViewById(R.id.div);
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                float a = Float.parseFloat(number1.getText().toString());
-                float b = Float.parseFloat(number2.getText().toString());
-                sol = a + b;
-                Toast.makeText(MainActivity.this, "The sum is " + sol
-                        , Toast.LENGTH_SHORT).show();
-            }
-        });
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                float a = Float.parseFloat(number1.getText().toString());
-                float b = Float.parseFloat(number2.getText().toString());
-                sol = a - b;
-                Toast.makeText(MainActivity.this, "The difference is "
-                        + sol, Toast.LENGTH_SHORT).show();
-            }
-        });
-        b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                float a = Float.parseFloat(number1.getText().toString());
-                float b = Float.parseFloat(number2.getText().toString());
-                sol = a * b;
-                Toast.makeText(MainActivity.this, "The product is "
-                        + sol, Toast.LENGTH_SHORT).show();
-            }
-        });
-        b4.setOnClickListener(new View.OnClickListener() {
+        username=(EditText)findViewById(R.id.un);
+        password=(EditText)findViewById(R.id.pd);
+        b1=(Button)findViewById(R.id.reset);
+        b1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                float a = Float.parseFloat(number1.getText().toString());
-                float b = Float.parseFloat(number2.getText().toString());
-                sol=a/b;
-                Toast.makeText(MainActivity.this, "Quotient="+sol, Toast.LENGTH_SHORT).show();
+
+                username.setText("");
+                password.setText("");
             }
         });
+        b2=(Button)findViewById(R.id.sub);
+        b2.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
+                    Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Login Unsuccessfull", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 }
